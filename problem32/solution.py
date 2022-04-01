@@ -70,20 +70,25 @@ def productIsPandigital(a, b):
         return False, None
 
 # %%
+def findPandigitalProducts():
+    pandigitalProducts = []
+    for a in range(2, 10**9):
+        maxB = int((10**9)/a)
+        if productLen(a, a) > 9:
+            break
+        for b in range(a, maxB):
+            if productLen(a, b) > 9:
+                break
+            pIsPandigital, product = productIsPandigital(a, b)
+            if pIsPandigital:
+                pandigitalProducts.append(product)
+    return pandigitalProducts
+
+# %%
 t0 = dt.datetime.now()
 
-pandigitalProducts = []
-for a in range(2, 10**9):
-    maxB = int((10**9)/a)
-    if productLen(a, a) > 9:
-        break
-    for b in range(a, maxB):
-        if productLen(a, b) > 9:
-            break
-        pIsPandigital, product = productIsPandigital(a, b)
-        if pIsPandigital:
-            pandigitalProducts.append(product)
 
+pandigitalProducts = findPandigitalProducts()
 pandigitalProductsSet = set(pandigitalProducts)
 
 t1 = dt.datetime.now()
