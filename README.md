@@ -1,2 +1,2 @@
 # euler
-Project Euler
+ A collection of all attempted project euler solutions.
