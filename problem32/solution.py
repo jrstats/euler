@@ -47,24 +47,15 @@ def containsAllDigits(xStr, xSet):
 
 # %%
 def productToStr(a, b):
+    return str(a) + str(b) + str(a*b)
+
+def productToPrint(a, b):
     return f"{a} * {b} = {a*b}"
 
-def productLen(a, b):
-    return len(str(a) + str(b) + str(a*b))
-
 def productIsPandigital(a, b):
-    if (contains0(*intToStrSet(a)) or 
-        contains0(*intToStrSet(b)) or 
-        contains0(*intToStrSet(a*b)) or 
-        containsDuplicate(*intToStrSet(a)) or 
-        containsDuplicate(*intToStrSet(b)) or
-        containsDuplicate(*intToStrSet(a*b))
-    ):
-        return False, None
-
-    xStr = str(a) + str(b) + str(a*b)
+    xStr = productToStr(a, b)
     if isPandigital(xStr):
-        print(productToStr(a, b))
+        # print(productToPrint(a, b))
         return True, a*b
     else:
         return False, None
@@ -74,10 +65,10 @@ def findPandigitalProducts():
     pandigitalProducts = []
     for a in range(2, 10**9):
         maxB = int((10**9)/a)
-        if productLen(a, a) > 9:
+        if len(productToStr(a, a)) > 9:
             break
         for b in range(a, maxB):
-            if productLen(a, b) > 9:
+            if len(productToStr(a, b)) > 9:
                 break
             pIsPandigital, product = productIsPandigital(a, b)
             if pIsPandigital:
